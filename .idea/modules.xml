@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/sh-clg-agedwell-seniorcare[1].iml" filepath="$PROJECT_DIR$/.idea/sh-clg-agedwell-seniorcare[1].iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/flutter_pro[1].iml" filepath="$PROJECT_DIR$/.idea/flutter_pro[1].iml" />
+>>>>>>> 76cd8b2dded9e6095b521bce35af74d9731b2412
     </modules>
   </component>
 </project>
