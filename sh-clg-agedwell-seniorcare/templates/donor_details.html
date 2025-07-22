@@ -1,0 +1,56 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br>
+
+
+<center>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h1>DONOR DETAILS</h1>
+        <br>
+        <table class="table">
+            <tr>
+                <th>Index</th>
+                <th>Donor Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Occupation</th>
+                <th>Gender</th>
+                <TH>DOB</TH>
+                <TH>City</TH>
+                <TH>Profile</TH>
+                <TH>ID Proof</TH>
+
+            </tr>
+            {% for i in data['view_d'] %}
+
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{i['dname']}}</td>
+                <td>{{i['demail']}}</td>
+                <td>{{i['dphone']}}</td>
+                <td>{{i['doccupation']}}</td>
+                <td>{{i['dgender']}}</td>
+                <td>{{i['ddateofbirth']}}</td>
+                <td>{{i['dcity']}}</td>
+                <td><a href="/{{i['dfile_upload']}} ">view profile</a></td>
+                <td><a href="/{{i['dp_image']}} ">View ID</a></td>
+                <td class="btn btn-success" style="background-color: rgb(12, 112, 50);"><a
+                        href="chat_donor?did={{i['login_id']}}" style="color: aliceblue;">Chat</a></td>
+                <!-- <td class="btn btn-primary" style="background-color: rgb(24, 35, 183);"><a href="donor_requirement?did={{i['login_id']}}" style="color: aliceblue;">Requirement</a></td> -->
+
+            </tr>
+
+
+            {% endfor %}
+
+        </table>
+    </form>
+</center>
+<style>
+    .form-class {
+
+        width: 100%;
+        border-radius: 5px;
+    }
+</style>
+<br><br><br><br>
+{% include 'footer.html'%}

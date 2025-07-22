@@ -1,0 +1,59 @@
+{% include 'admin_header.html' %}
+
+<br><br><br><br><br>
+
+<center>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h2 class="text-center">Add Article</h2>
+        <table class="table b-empty" >
+            <tr>
+                <th>Article*</th>
+                <td><input type="file" name="menu" class="form-control"></td>
+            </tr>
+            <tr >
+                <br><br><br>
+                <td align="center" colspan="2" style="padding-top: 30px;"><input type="submit" name="submit" value="UPLOAD" class="btn btn-success"></td>
+            </tr>
+        </table>
+    </form>
+
+    <br><br>
+        <h3>View Article</h3>
+        <br>
+    <table class="table table-striped" style="width: 80%;">
+        <tr>
+            <th>Sl.no</th>
+            <th>Article</th>
+            <th>Action</th>
+        </tr>
+        {% for row in data['view_a'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+                <img src="/{{row['article']}}" alt="Uploaded File" style="width: 200px; height: auto;">
+            </td>
+            <td>
+                <a href="?action=delete&article_id={{ row['article_id'] }}" class="btn btn-danger">DELETE</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+
+<style>
+    .form-class {
+        width: 60%;
+        border-radius: 6px;
+    }
+    .b-empty td,.b-empty tr,.b-empty th{
+        
+        
+        border:1px solid transparent !important
+        
+    }
+    
+</style>
+
+<br><br><br>
+
+{% include 'footer.html' %}

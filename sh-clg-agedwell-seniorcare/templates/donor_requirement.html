@@ -1,0 +1,65 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br>
+
+<center>
+    <form class="form-control p-5 shadow" enctype="multipart/form-data" method="post">
+        <h3 class="text-center">Donor Requirement</h3>
+        <table class="table b-empty">
+            <tr>
+                <th>Category*</th>
+                <td><input type="text" name="d_cat" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>
+                    <input type="radio" id="high" name="priority" value="high">
+                    <label for="high">High Priority</label>
+                    
+                    <input type="radio" id="low" name="priority" value="low">
+                    <label for="low">Low Priority</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><input type="submit" name="submit" value="ADD CATEGORY" class="btn btn-success"></td>
+            </tr>
+        </table>
+    </form>
+
+    <br><br>
+        <h3>VIEW CATEGORY</h3>
+    <table class="table table-striped" style="width: 80%;">
+        <tr>
+            <th>Sl.no</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Action</th>
+        </tr>
+        {% for row in data['dontview'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ row ['d_cat'] }} </td>
+            <td>{{ row['priority'] }}</td>
+            <td>
+                <a href="?action=delete&cid={{ row['d_cat_id'] }}" class="btn btn-danger">DELETE</a>
+                <a href="donor_d_requirement?d_cat_id={{row['d_cat_id']}}" class="btn btn-success">VIEW REQUIREMENTS</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+
+
+<style>
+    .form-class {
+        width: 60%;
+        border-radius: 6px;
+    }
+    .b-empty td,.b-empty tr,.b-empty th{
+        
+        
+        border:1px solid transparent !important
+        
+    }
+    
+</style>
+{% include 'footer.html'%}

@@ -1,0 +1,42 @@
+{% include 'admin_header.html' %}
+
+<br><br><br><br><br>
+
+<center>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h3 class="text-center">Send Reply</h3>
+        <table class="table b-empty" >
+             <tr>
+                <th>Reply*</th>
+                <td><input type="text" name="reply" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>Upload file*</th>
+                <td><input type="file" name="reply_image" class="form-control"></td>
+            </tr>
+            <tr >
+                <td align="center" colspan="2"><input type="submit" name="submit" value="UPLOAD" class="btn btn-success"></td>
+            </tr>
+        </table>
+    </form>
+
+ 
+</center>
+
+<style>
+    .form-class {
+        width: 60%;
+        border-radius: 6px;
+    }
+    .b-empty td,.b-empty tr,.b-empty th{
+        
+        
+        border:1px solid transparent !important
+        
+    }
+    
+</style>
+
+<br><br><br>
+
+{% include 'footer.html' %}

@@ -1,0 +1,75 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+
+<body>
+    <center>
+        <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+            <h1>Track Volunteer</h1>
+            <br>
+            <table class="table">
+                <tr>
+                    <th>Index</th>
+                    <th>Volunteer Name</th>
+                    <th>Pickup Time</th>
+                    <th>Drop Time</th>
+                    <th>Status</th>
+                    <!-- <th>REWARD</th> -->
+                </tr>
+                {% for i in data['view_t']['pickup_drop_times'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i['vname'] }}</td>
+                    <td>{{ i['pickup_time'] }}</td>
+                    <td>{{ i['droptime'] }}</td>
+                    <td>{{ i['status'] }}</td>
+                 <!--    <td><a href="reward">REWARDS</a></td> -->
+                </tr>
+                {% endfor %}
+            </table>
+            
+            <table class="table">
+                <tr>
+                    <th>Index</th>
+                    <th>Volunteer Name</th>
+                    <th>Appointment Title</th>
+                    <th >Booking Date</th>
+                    <th>Status</th>
+                </tr>
+                {% for i in data['view_t']['appointments'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i['vname'] }}</td>
+                    <td>{{ i['app_title'] }}</td>
+                    <td style="padding-left: 110px;">{{ i['bookingdate'] }}</td>
+                    <td>{{ i['booking_status'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+            <br>
+            <h2>Monthly Data</h2>
+            <table class="table">
+                <tr>
+                    <th>Month</th>
+                    <th>Total Working Hours</th>
+                    <th>Number of Appointments</th>
+                </tr>
+                {% for month_data in data['monthly_data'] %}
+                <tr>
+                    <td>{{ month_data['month'] }}</td>
+                    <td>{{ month_data['total_working_hours'] }}</td>
+                    <td>{{ month_data['appointment_count'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
+    </center>
+    <style>
+        .form-class {
+            width: 90%;
+            border-radius: 5px;
+        }
+    </style>
+    <br><br><br>
+    {% include 'footer.html' %}
+</body>

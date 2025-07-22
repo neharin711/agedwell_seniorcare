@@ -1,0 +1,69 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+
+    
+        <center>
+            <form class="form-control p-5 shadow" enctype="multipart/form-data" method="post">
+                <h3 class="text-center">DONOR REQUIREMENTS</h3>
+                <table class="table b-empty">
+                    <tr>
+                        <th>REQUEST*</th>
+                        <td><input type="text" name="request_text" class="form-control"></td>
+                    </tr>
+                    <!-- <tr>
+                        <th>DATE*</th>
+                        <td><input type="date" name="date" class="form-control"></td>
+                    </tr> -->
+                    <tr>
+                        <td align="center" colspan="2"><input type="submit" name="btn" value="ADD" class="btn btn-success"></td>
+                    </tr>
+                </table>
+            </form>
+        
+            <br><br>
+     
+        <h1>DONOR REQUIREMENTS</h1>
+        <table class="table table-striped" style="width: 80%;">
+            <thead>
+                <tr>
+                    <th>SL No</th>
+                    <th>REQUEST</th>
+                    <th>DATE</th>
+                    <th>STATUS</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data['d__requirement'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i['request'] }}</td>  
+                    <td>{{ i['date'] }}</td>
+                    <td>{{ i['status'] }}</td>
+                    <td>
+                        {% if i['status'] == 'pending' %}
+                    
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </center>
+    <style>
+        .form-class {
+            width: 60%;
+            border-radius: 6px;
+        }
+        .b-empty td,.b-empty tr,.b-empty th{
+            
+            
+            border:1px solid transparent !important
+            
+        }
+        
+    </style>
+
+<br><br><br>
+{% include 'footer.html' %}

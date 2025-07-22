@@ -1,0 +1,74 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br>
+<center>
+    <h3>Class Video</h3>
+    <br><br><br>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <table class="table" style="width: 30em;">
+            <tr>
+                <th>Select Appointment</th>
+                <td>
+                    <select name="appointment" class="form-control" style="width: 250px; height: 38px; border-radius: 10px;">
+                        {% for i in data['appointments'] %}
+                        <option value="{{i['book_appo_id']}}">{{i['app_title']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td><input type="text" name="title" class="form-control"></td>
+            </tr>
+            <tr>
+                <th>Class Video</th>
+                <td><input type="file" name="video" class="form-control"></td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" value="UPLOAD" class="btn btn-success">
+    </form>
+    <br>
+    <h3>View Videos</h3>
+    <div class="container">
+        <div class="row">
+            {% for i in data['video_details'] %}
+            <div class="col-md-4">
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i['title']}}</h5>
+                        <video width="100%" height="auto" controls>
+                            <source src="/{{ i['file_path'] }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+<style>
+    .form-class {
+        width: 90%;
+        border-radius: 5px;
+    }
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .card-title {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .shadow-lg {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .row {
+        justify-content: center;
+    }
+</style>
+<br><br>
+{% include 'footer.html' %}

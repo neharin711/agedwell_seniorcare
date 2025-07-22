@@ -1,0 +1,45 @@
+{% include 'admin_header.html' %}
+<br><br><br>
+
+<center>
+<br>
+</div>
+<form method="post">
+    <div style="height: 300px; width: 700px; overflow-y: scroll;">
+        <table>
+            {% for row in data['msg'] %}
+                {% if row['sender_id'] == session['lid'] %}
+                    <!-- Message sent by logged-in user/shop -->
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="btn btn-primary" type="text" class="form-control" value="{{ row['message'] }}" readonly>
+                        </td>
+                    </tr>
+                {% else %}
+                    <!-- Message received by logged-in user/shop -->
+                    <tr>
+                        <td>
+                            <input class="btn btn-info" type="text" class="form-control" value="{{ row['message'] }}" readonly>
+                        </td>
+                        <td></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr><td><br></td></tr>
+        </table>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <input type="text" style="border-color: blue" class="form-control" name="msg" required>
+            </td>
+            <td align="center">
+                <input type="submit" name="submit" class="btn btn-success" value="Send Message">
+            </td>
+        </tr>
+        <tr><td><br></td></tr>
+    </table>
+</form>
+</center>
+{% include 'footer.html' %}

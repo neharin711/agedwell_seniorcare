@@ -1,0 +1,131 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <center>
+        <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h1>Food Request</h1>
+        <br>
+        <table class="table" style="width: 80em;">
+            <tr>
+                <th>Index</th>
+                <th>Donor</th>
+                <th>Phone</th>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>View Donor</th>
+                <th>More</th>
+                <th>Actions</th>
+                <th></th>
+            </tr>
+            {% for i in data['view_f'] %}
+            <tr >
+                <td>{{ loop.index }}</td>
+                <td>{{ i['dname'] }}</td>
+                <td>{{i['dphone']}}</td>
+                <td>{{ i['day'] }}</td>
+                <td>{{ i['date'] }}</td>
+                <td style="color: #c9302c;">{{ i['status'] }}</td>
+                <td>
+                    <a href="donor_details?did={{i['donor_id']}}">Click Here</a>
+                    {% if i['status'] == 'accepted' %}
+                </td>
+                <td>
+                    <a href="add_menu?food_request_id={{ i['food_request_id'] }}&did={{i['donor_id']}}&email={{i['demail']}}">Add Menu</a>
+                </td>
+                 {% elif i['status'] == 'pending' %}
+                <td>
+                    <a href="?action=accept&id={{i['food_request_id']}}" class="btn btn-success">ACCEPT</a></td>
+                    <td>
+                    <a href="?action=reject&id={{i['food_request_id']}}" class="btn btn-danger">REJECT</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </center>
+    
+    <style>
+        .form-class {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9; /* Light background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .form-class h3 {
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            background: #3f51b5; /* Header background color */
+            color: white; /* Header text color */
+            margin: 0;
+        }
+    
+        .form-class th, .form-class td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        .form-class th {
+            background: #f1f1f1; /* Table header background */
+            color: #333; /* Table header text color */
+            font-weight: bold;
+        }
+    
+        .form-class tr:nth-child(even) {
+            background-color: #f2f2f2; /* Alternate row background */
+        }
+    
+        .form-class tr:hover {
+            background-color: #e8f0fe; /* Row hover effect */
+        }
+    
+        /* .btn {
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #d9534f; /* Danger button color */
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn:hover {
+            background-color: #c9302c; /* Button hover effect */
+        } */
+    </style>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% include 'footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

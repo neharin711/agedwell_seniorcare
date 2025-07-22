@@ -1,0 +1,48 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+
+    <center>
+        <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h1>View Appointment</h1>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Appointment</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data['view_a'] %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ i['app_title'] }}</td>
+                    <td>{{ i['vname'] }}</td>   
+                    <td>{{ i['bookingdate'] }}</td>
+                    <td>{{ i['booking_status'] }}</td>
+                    <td>
+                        {% if i['booking_status'] == 'pending' %}
+                        <a href="?action=accept&book_appo_id={{ i['book_appo_id'] }}" class="btn btn-success">ACCEPT</a>
+                        <a href="?action=reject&book_appo_id={{ i['book_appo_id'] }}" class="btn btn-danger">REJECT</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </center>
+    <style>
+        .form-class{
+            
+            width: 90% ;
+            border-radius: 5px;
+        }
+    </style>
+
+<br><br><br>
+{% include 'footer.html' %}

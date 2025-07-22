@@ -1,0 +1,63 @@
+{% include 'admin_header.html'%}
+<br><br><br><br><br><br>
+
+  
+        <center>
+          <form class="form-class p-6 shadow" method="post" enctype="multipart/form-data">
+        <h1>Volunteer Details</h1>
+<br>
+        <table class="table">
+            <tr>
+                <th>Index</th>
+                <th>Volunteer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Occupation</th>
+                <th>Gender</th>
+                <TH>DOB</TH>
+                <TH>City</TH>
+                <TH>ID Proof</TH>
+                <TH>Profile</TH>
+               
+            </tr>
+        {% for i in data['view_v'] %}
+
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{i['vname']}}</td>
+            <td>{{i['email']}}</td>
+            <td>{{i['phone']}}</td>
+            <td>{{i['occupation']}}</td>
+            <td>{{i['gender']}}</td>
+            <td>{{i['dateofbirth']}}</td>
+            <td>{{i['city']}}</td>
+            
+            <td><a  href="/{{i['file_upload']}}">View Profile</a></td>
+            <td><a href="/{{i['p_image']}}">View ID</a></td>
+			
+      <td class="btn btn-success" style="background-color: rgb(222, 178, 17);" ><a href="chat_volunteer?vid={{i['login_id']}}" style="color: aliceblue;">CHAT</a></td>
+
+     <td class="btn btn-success" style="background-color: rgb(10, 181, 178);" ><a href="track_volunteer?vid={{i['volunteer_id']}}" style="color: aliceblue;">TRACK</a>
+     </td>
+
+        </tr>
+           
+      
+        {% endfor %}
+
+        </table>
+      </form>
+</center>
+<style>
+  .form-class{
+      
+      width: 90% ;
+      border-radius: 5px;
+  }
+</style>
+<br><br><br><br>
+{% include 'footer.html'%}
+
+
+
+

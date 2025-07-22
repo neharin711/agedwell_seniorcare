@@ -1,0 +1,43 @@
+{% include 'public_header.html' %}
+   
+</head>
+<body>
+   
+
+    <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+        <div class="container text-center text-md-left" data-aos="fade-up">
+            <h2>LOGIN</h2>
+            <center>
+                <form method="POST">
+                    <table class="login-table" style="background-color: transparent;">
+                        <tr>
+                            <th style="color: aliceblue;">Username</th>
+                            <td><input type="text" name="username" class="form-control" required=""></td>
+                        </tr>
+                        <tr>
+                            <th style="color: aliceblue;">Password</th>
+                            <td> <input type="password" name="password" class="form-control" required=""></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <input type="submit" name="login" value="Login" class="btn btn-success" style="background-color: cadetblue;">
+                </form>
+            </center>
+        </div>
+    </section><!-- End Hero -->
+
+    <!-- Flash Message Section -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-info" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    {% include 'footer.html' %}
+

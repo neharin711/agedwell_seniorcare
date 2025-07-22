@@ -1,0 +1,55 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+
+<body>
+    <center>
+        <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h1>Donation Details</h1>
+        <br>
+        <table class="table">
+            <tr>
+                <th>Index</th>
+               
+                
+                <th>Donor Name</th>
+                <TH>Amount</TH>
+                <th>Date</th>
+                <TH>Reply</TH>
+                <th>Uploaded File</th>
+                <th>Actions</th>
+            </tr>
+            {% for i in data['view'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+             
+                
+                <td>{{ i['dname'] }}</td>
+                <td>{{ i['amount'] }}</td>
+                <td>{{ i['date'] }}</td>
+                <td>{{ i['reply'] }}</td>
+                <td>
+                   
+                  <img src="/{{i['file_upload']}}" alt="Uploaded File" style="width: 100px; height: auto;">
+                  
+                </td>
+                <td>
+                   
+                   
+                      <a href="admin_sendpaymeant_reply?donation_payment_id={{ i['donation_payment_id'] }}" class="btn btn-danger">Send Reply</a>
+                   
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </center>
+    <style>
+        .form-class{
+            
+            width: 90% ;
+            border-radius: 5px;
+        }
+    </style>
+    <br><br><br><br><br><br><br><br><br>
+{% include 'footer.html' %}

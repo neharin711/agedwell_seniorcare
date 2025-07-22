@@ -1,0 +1,63 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br>
+
+<center>
+    <h3>REWARDS</h3>
+    <h2>Monthly Data</h2>
+    <input type="text" id="monthSearch" onkeyup="searchByMonth()" placeholder="Search for month..">
+    <table class="table" id="rewardsTable">
+        <thead>
+            <tr>
+                <th>Volunteer Name</th>
+                <th>Month</th>
+                <th>Total Working Hours</th>
+                <th>Number of Appointments</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data['reward'] %}
+            <tr>
+                <td>{{ data['vname'] }}</td>
+                <td>{{ data['month'] }}</td>
+                <td>{{ data['total_working_hours'] }}</td>
+                <td>{{ data['appointment_count'] }}</td>
+                <td>{{ data['status'] }}</td>
+                {% if data['is_best_volunteer'] and data['status'] != 'Best Volunteer' %}
+                <td><a href="?action=reward&vid={{ data['volunteer_id'] }}&month={{ data['month'] }}&tid={{ data['track_id'] }}">Reward</a></td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</center>
+
+<script>
+function searchByMonth() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("monthSearch");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("rewardsTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 1; i < tr.length; i++) { // start from 1 to skip the header row
+        td = tr[i].getElementsByTagName("td")[1]; // the month column is the second column
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+</script>
+
+<br><br><br>
+{% include 'footer.html' %}

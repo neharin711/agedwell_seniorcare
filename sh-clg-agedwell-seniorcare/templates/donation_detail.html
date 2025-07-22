@@ -1,0 +1,61 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+
+<body>
+    <center>
+        <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <h1>Donation Details</h1>
+        <br>
+        <table class="table">
+            <tr>
+                <th>Index</th>
+                <th>Donor name</th>
+                <th>Items</th>
+                <th>Quantity</th>
+                <TH>Type</TH>
+                <th>Date</th>
+                <th>Status</th>
+                <TH>Reply</TH>
+                <th>Uploaded File</th>
+                <th>Actions</th>
+            </tr>
+            {% for i in data['view_dd'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{i['dname']}}</td>
+                <td>{{ i['item'] }}</td>
+                <td>{{ i['qty'] }}</td>
+                <td>{{ i['type'] }}</td>
+                <td>{{ i['date'] }}</td>
+                <td>{{ i['status'] }}</td>
+                <td>{{ i['reply'] }}</td>
+                <td>
+                   
+                  <img src="/{{i['file_upload']}}" alt="Uploaded File" style="width: 100px; height: auto;">
+                  
+                </td>
+                <td>
+                    {% if i['status'] == 'pending' %}
+                    
+                    <a href="?action=accept&donation_item_id={{ i['donation_item_id'] }}" class="btn btn-success">ACCEPT</a>
+                    <a href="?action=reject&donation_item_id={{ i['donation_item_id'] }}" class="btn btn-danger">REJECT</a>
+                    {% endif %}
+                    {% if i['status']=='delivered'%}
+                      <a href="admin_senditem_reply?donation_item_id={{ i['donation_item_id'] }}" class="btn btn-danger">Send Reply</a>
+                    {% endif%}
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </center>
+    <style>
+        .form-class{
+            
+            width: 90% ;
+            border-radius: 5px;
+        }
+    </style>
+    <br><br><br><br><br><br><br><br><br>
+{% include 'footer.html' %}

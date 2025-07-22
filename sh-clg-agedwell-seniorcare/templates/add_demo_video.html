@@ -1,0 +1,51 @@
+{% include 'admin_header.html' %}
+<br><br><br><br><br><br>
+<center>
+    <h3>Demo Video</h3>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+        <table class="table" style="width: 30em;">
+            <tr>
+                <th>Demo Video</th>
+                <td><input type="file" name="video" class="form-control"></td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" value="UPLOAD" class="btn btn-success">
+    </form>
+    <br><br>
+
+    <h3>View Videos</h3>
+    <div class="container">
+        <div class="row">
+            {% for i in data['video'] %}
+            <div class="col-md-4">
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <video width="100%" height="auto" controls>
+                            <source src="/{{ i['video'] }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+<style>
+    .form-class {
+        width: 90%;
+        border-radius: 5px;
+    }
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+    .card-body {
+        padding: 1rem;
+    }
+    .shadow-lg {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+</style>
+<br><br>
+{% include 'footer.html' %}

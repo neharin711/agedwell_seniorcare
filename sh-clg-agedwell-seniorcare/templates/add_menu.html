@@ -1,0 +1,98 @@
+{% include 'admin_header.html' %}
+<br><br><br>
+<center>
+    <form class="form-class p-5 shadow" method="post" enctype="multipart/form-data">
+    <table class="table" style="width: 50em;">
+        <tr>
+            <th>UPLOAD MENU</th>
+            <td ><input type="file" name="menu" class="form-control"></td>
+        </tr>
+    </table>
+    <br><br>
+    <tr>
+        <td><input type="submit" name="submit" value="UPLOAD" class="btn btn-success"></td>
+    </tr>
+    
+</form>
+<br>
+<table class="form-class shadow">
+    <h3>View Menu</h3>
+    <thead>
+        <tr>
+            <th>SL No</th>
+            <th>Uploaded Menu</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in data['view_menu'] %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+                <a href="/{{i['file_upload'] }}" alt="Uploaded File">View Menu</a>
+            </td>
+            <td>
+                <a href="?action=delete&food_request_id={{ i['food_request_id'] }}" class="btn btn-danger">DELETE</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+    .form-class {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f9f9f9; /* Light background */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-class h3 {
+        text-align: left;
+        padding: 15px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        background: #3f51b5; /* Header background color */
+        color: white; /* Header text color */
+        margin: 0;
+    }
+
+    .form-class th, .form-class td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .form-class th {
+        background: #f1f1f1; /* Table header background */
+        color: #333; /* Table header text color */
+        font-weight: bold;
+    }
+
+    .form-class tr:nth-child(even) {
+        background-color: #f2f2f2; /* Alternate row background */
+    }
+
+    .form-class tr:hover {
+        background-color: #e8f0fe; /* Row hover effect */
+    }
+
+    .btn {
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #d9534f; /* Danger button color */
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #c9302c; /* Button hover effect */
+    }
+</style>
+<br><br>
+{% include 'footer.html' %}
